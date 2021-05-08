@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 8</title>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="600" style="border: 1px solid black"></canvas>
+<script>
+  class Circle {
+    constructor(x, y, radius, speedX, speedY) {
+      this.x = x;
+      this.y = y;
+      this.radius = radius;
+      this.speedX = speedX;
+      this.speedY = speedY;
+    }
+  }
+  let circle = new Circle(50, 50, 50, 30, 30);
+  let c = document.getElementById("myCanvas");
+  let ctx = c.getContext("2d");
+  DrawCircle();
+  function DrawCircle() {
+    ctx.beginPath();
+    ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+    ctx.fillStyle = "red";
+    ctx.fill();
+    ctx.closePath();
+  }
+  window.onkeydown = function (e) {
+    if (e.keyCode === 37) {
+      ctx.clearRect(0, 0, c.width, c.height);
+      circle.x -= circle.speedX;
+      DrawCircle();
+    }
+    else if (e.keyCode === 39) {
+      ctx.clearRect(0, 0, c.width, c.height);
+      circle.x += circle.speedX;
+      DrawCircle();
+    }
+    else if (e.keyCode === 38) {
+      ctx.clearRect(0, 0, c.width, c.height);
+      circle.y -= circle.speedY;
+      DrawCircle();
+    }
+    else if (e.keyCode === 40) {
+      ctx.clearRect(0, 0, c.width, c.height);
+      circle.y += circle.speedY;
+      DrawCircle();
+    }
+  }
+</script>
+</body>
+</html>
